@@ -1,11 +1,11 @@
 package app;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.function.Predicate;
 
 import app.App.Person.Gender;
 
-
+// Thank's to https://www.youtube.com/watch?v=VRpHdSFWGPs
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -35,8 +35,12 @@ public class App {
         people.stream()
             .filter(p->p.gender.equals(Gender.FEMALE))
             .forEach(System.out::println);
-            
-            
+        
+        System.out.println("// Isolated declarative predicate        ");
+        Predicate<Person> personPredicate = person -> Gender.FEMALE.equals(person.gender);
+        people.stream()
+            .filter(personPredicate)
+            .forEach(System.out::println);
         
     }
 
